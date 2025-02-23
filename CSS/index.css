@@ -1,0 +1,442 @@
+html, body {  
+    overflow: hidden;  
+    height: 100%; /* 确保body和html元素占据整个视口高度 */  
+    margin: 0; /* 移除默认的边距 */  
+    padding: 0; /* 移除默认的内边距 */  
+  }
+
+*{
+    margin:0 ;
+    padding: 0;
+    font-size: 14px;
+}
+.container{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to right, rgb(255, 255, 255), rgba(171, 207, 224, 0.5));
+}
+/* 侧边栏top */
+.aside{
+    height: 100vh;
+    background-color:rgba(213, 238, 250, 0.5);
+    border-right: 4px solid rgb(179, 195, 202);
+    border-top-right-radius: 16px;
+    transition: transform 0.5s ease-in-out;
+    flex: 0 0 20%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.aside::-webkit-scrollbar {  
+    display: none;  
+}  
+.hidden1 {
+    transform: translateX(-100%);
+}
+.top{
+    position: relative;
+    border-bottom: 4px solid white;
+    height: 60px;
+    border-radius: 8px;
+}
+.top #image{
+    width: 48px;
+    height: 48px;
+    position:absolute;
+    top: 12px;
+    left: 12px;
+}
+.top #name{
+     position: absolute;
+     top: 24px;
+     font-size: 16px;
+     left: 120px;
+     font-weight: bolder;
+     color: rgb(175, 191, 199);
+}
+/* 侧边栏close-aside */
+#close-aside-button {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 20px;
+    left: 256px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+#close-aside-button:hover{
+    background-color: ivory;
+    border-radius: 8px;
+}
+.tip-close-aside {
+    position: absolute;
+    left: 290px; /* 根据实际需要调整，使其位于#close-aside的右侧 */
+    top: 2px; /* 根据实际需要调整，使其位于#close-aside的正上方 */
+    visibility: hidden; /* 初始化为隐藏状态 */
+    transition: opacity 0.4s, visibility 0.4s; /* 添加过渡效果 */
+    opacity: 0; /* 初始化透明度为0 */
+}
+
+.tip-close-aside .icon {
+    width: 96px;
+    height: 64px;
+    display: inline-block;
+}
+
+.tip-close-aside span {
+    font-size: 14px;
+    color: ivory;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-2px);
+}
+
+/* 当鼠标悬停在#close-aside上时，显示.tip-close-aside */
+#close-aside:hover .tip-close-aside {
+    opacity: 1; /* 设置透明度为1 */
+    visibility: visible; /* 设置为可见状态 */
+}
+
+/* 侧边栏unfold-aside */
+#unfold-aside{
+    display: none;
+}
+#unfold-aside-button {
+    width: 28px;
+    height: 28px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+#unfold-aside-button:hover{
+    background-color: rgb(173, 221, 238);
+    border-radius: 8px;
+}
+.tip-unfold-aside {
+    position: absolute;
+    left: 50px; /* 根据实际需要调整，使其位于#unfold-aside的右侧 */
+    top: 2px; /* 根据实际需要调整，使其位于#unfold-aside的正上方 */
+    visibility: hidden; /* 初始化为隐藏状态 */
+    transition: opacity 0.4s, visibility 0.4s; /* 添加过渡效果 */
+    opacity: 0; /* 初始化透明度为0 */
+}
+
+.tip-unfold-aside .icon {
+    width: 96px;
+    height: 64px;
+    display: inline-block;
+}
+
+.tip-unfold-aside span {
+    font-size: 14px;
+    color: ivory;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-2px);
+}
+
+/* 当鼠标悬停在#unfold-aside上时，显示.tip-unfold-aside */
+#unfold-aside:hover .tip-unfold-aside {
+    opacity: 1; /* 设置透明度为1 */
+    visibility: visible; /* 设置为可见状态 */
+}
+
+
+/* aside-function */
+.create-conversation,
+.resent-conversation,
+.myStory,
+.AIs .unfold-bar{
+    padding-left: 10px;
+    margin-top: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 268px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.create-conversation .icon{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 250px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.resent-conversation .icon{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 252px;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+
+.myStory .icon{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 248px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.AIs .icon{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 248px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.create-conversation:hover,
+.resent-conversation:hover,
+.myStory:hover,
+.AIs .unfold-bar:hover{
+    background-color: ivory;
+    box-shadow: 0 0 10px rgb(191, 195, 211);
+}
+
+.svg{
+    width: 32px;
+    height: 32px;
+}
+.AIs .svg{
+    width: 24px;
+    height: 24px;
+    transform: translateY(3px) translateX(4px);
+}
+
+.create span{
+    font-size: 16px;
+    display: inline-block;
+    padding-bottom: 0px;
+    transform: translateY(-10px);
+}
+
+.resent span{
+    font-size: 16px;
+    display: inline-block;
+    padding-bottom: 0px;
+    transform: translateY(-10px);
+}
+.myStory span{
+    font-size: 16px;
+    display: inline-block;
+    padding-bottom: 0px;
+    transform: translateY(-10px);
+}
+.AIs span{
+    font-size: 16px;
+    display: inline-block;
+    padding-bottom: 0px;
+    transform: translateY(-2px);
+    margin-left: 8px;
+}
+.robot-bar{
+    display: flex;
+    flex-direction: column;
+    max-height: 0; /* 初始状态设置为0，隐藏内容 */  
+    overflow: hidden; /* 防止内容溢出 */  
+    opacity: 0; /* 初始透明度为0 */  
+    transition: max-height 1s, opacity 1s ; /* 设置过渡效果 */  
+    /* 其他样式，如padding、margin、border等 */  
+}
+#recordBar{
+    display: flex;
+    flex-direction: column;
+    max-height: 0; /* 初始状态设置为0，隐藏内容 */  
+    overflow: hidden; /* 防止内容溢出 */  
+    opacity: 0; /* 初始透明度为0 */  
+    transition: max-height 1s, opacity 1s ; /* 设置过渡效果 */  
+    /* 其他样式，如padding、margin、border等 */  
+    padding-bottom: 6px;
+}
+.robot-bar.expanded {  
+    max-height: 250px; /* 设置一个足够大的值来显示内容，或者使用具体的值或百分比 */  
+    opacity: 1; /* 设置为完全可见 */  
+}
+#recordBar.expanded {  
+    max-height: 0px;
+    /* 设置一个足够大的值来显示内容，或者使用具体的值或百分比   */
+    opacity: 1; /* 设置为完全可见 */  
+}
+.robot{
+    margin-top: 8px;
+    margin-left: 28px;
+    height: 32px;
+    margin-right: 28px;
+    border-radius: 12px;
+    position: relative;
+    transition: 0.3s all;
+    cursor: pointer;
+    flex: 0 0 auto; /* 使用 flex 布局 */
+    background-color: #fff;
+}
+.record
+{
+    margin-top: 8px;
+    margin-left: 28px;
+    height: 32px;
+    line-height: 32px;
+    margin-right: 28px;
+    border-radius: 12px;
+    position: relative;
+    transition: 0.3s all;
+    cursor: pointer;
+    flex: 0 0 auto; /* 使用 flex 布局 */
+    background-color: #fff;
+    padding-left: 10px;
+}
+.robot:hover{
+    background-color: ivory;
+    box-shadow: 0 0 10px rgb(191, 195, 211);
+}
+.record:hover{
+    background-color: ivory;
+    box-shadow: 0 0 10px rgb(191, 195, 211);
+}
+.do-robot:hover{
+    background-color: ivory;
+    box-shadow: 0 0 6px rgb(191, 195, 211);
+}
+.robot .svg{
+    margin-left: 6px;
+}
+
+.robot span{
+    position: absolute;
+    left: 130px;
+    font-size: 14px;
+    top: 9px;
+}
+.chat-robot{
+    margin-top: 4px;
+}
+.do-robot{
+    margin-bottom: 6px;
+}
+.hr{
+    height: 0.5px;
+    background-color: rgb(170, 170, 228);
+    width: 270px;
+    margin: 0 auto;
+    margin-top: 8px;
+}
+/* 主要聊天区 */
+/* top */
+.main-bar{
+    height: 100vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    transition: all 2s;
+}
+.hidden2{
+    transform: translateX(-150px);
+}
+.top-bar{
+    width: 1000px;
+    height: 50px;
+    background-image: url(../image/aside-top-1.jpg);
+    margin:  0 auto;
+    margin-top: 10px;
+    border: .5px solid rgb(179, 195, 202);
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgb(179, 195, 202);
+}
+.photo{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    border-radius: 25px;
+}
+@keyframes topBarRoll {  
+    0% {  
+        /* 起始状态，可以添加其他样式，如初始位置或旋转角度 */  
+        transform: translateX(0) rotateZ(0deg); /* 假设起始位置在原点且没有旋转 */  
+    }  
+
+    100% {  
+        /* 结束状态，进一步移动并完全旋转 */  
+        transform: translateX(800px) rotateZ(720deg); /* 移动到800px并完全旋转360度 */  
+    }  
+}
+.photo {  
+    animation-name: topBarRoll;  
+    animation-duration: 3s;  
+    animation-timing-function: ease-in;  
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+/* cover */
+
+
+
+
+
+/* 聊天框 */
+.chat-frame{
+    display: flex;
+    margin: 0 auto;
+    height: 600px;
+    width: 800px;
+    background-color: #edf0fb;
+    margin-top: 10px;
+    border-radius: 24px;
+    border: 2px dotted blue;
+}
+/* 输入框及发送 */
+.send-bar{
+    margin: 0 auto;
+    display: flex;
+    width: 1000px;
+    justify-content: space-between;
+}
+.input{
+    border: 0;
+    padding: 0;
+    width: 850px;
+    height: 50px;
+    border-radius: 14px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 50px;
+}
+input:focus{
+    outline: 0;
+}
+.submit{
+    display: inline-block;
+    height: 50px;
+    width: 60px;
+    border-radius: 12px;
+    border: 1px solid rgb(188, 206, 239);
+    background-color: #fff;
+    color: rgb(159, 159, 233);
+}
